@@ -19,10 +19,10 @@ function Dashboard({ onBack }) {
         .then((data) => {
           const formattedData = {
             ...data,
-            modelPerformance: data.modelPerformance.map(m => ({
+            modelPerformance: data.modelPerformance?.map(m => ({
               ...m,
               shortName: m.model.split("/").pop() 
-            }))
+            }))|| []
           };
           setStats(formattedData);
         });
