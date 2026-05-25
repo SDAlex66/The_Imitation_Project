@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import { motion, AnimatePresence } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Text from "./Text";
@@ -167,6 +168,7 @@ function App() {
         
         <Footer />
       </div>
+      <Analytics />
     </motion.div>
   );
 }
