@@ -1,15 +1,18 @@
-import sqlite3 from "sqlite3";
-import { open } from "sqlite";
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+import path from 'path';
 
-let db;
+
+const dbPath = process.env.DB_PATH || path.resolve('telemetry.db');
+
+let dbInstance = null;
 
 export async function getDb() {
-  if (db) return db;
-
-  db = await open({
-    filename: "./telemetry.db",
-    driver: sqlite3.Database
-  });
+  if (!dbInstance) {
+    dbInstance = await open({
+      filename: dbPath,
+      driver: sqlite3.Database
+    });
 
   await db.exec(`
     CREATE TABLE IF NOT EXISTS Matches (
@@ -42,4 +45,4 @@ export async function getDb() {
 
   console.log("Database tables verified and ready.");
   return db;
-}
+}}

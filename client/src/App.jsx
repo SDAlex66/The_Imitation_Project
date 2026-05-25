@@ -18,8 +18,8 @@ if (!persistentUserId) {
   persistentUserId = Math.random().toString(36).substring(2, 15);
   localStorage.setItem("imitation_user_id", persistentUserId);
 }
-
-const socket = io("http://localhost:3000", {
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+const socket = io(API_BASE_URL, {
   auth: { userId: persistentUserId }
 });
 

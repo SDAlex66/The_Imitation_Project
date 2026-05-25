@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 
+
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+
+
 function Dashboard({ onBack }) {
   const [stats, setStats] = useState(null);
   const [featured, setFeatured] = useState(null);
@@ -10,7 +14,7 @@ function Dashboard({ onBack }) {
  
   useEffect(() => {
     const fetchAllData = () => {
-      fetch("http://localhost:3000/api/stats")
+      fetch(`${API_BASE_URL}/api/stats`)
         .then((res) => res.json())
         .then((data) => {
           const formattedData = {
@@ -23,7 +27,7 @@ function Dashboard({ onBack }) {
           setStats(formattedData);
         });
 
-      fetch("http://localhost:3000/api/featured-chat")
+      fetch(`${API_BASE_URL}/api/featured-chat`)
         .then((res) => res.json())
         .then((data) => {
           setFeatured(data);

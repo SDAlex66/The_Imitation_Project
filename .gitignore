@@ -1,2 +1,14 @@
+# Dependencies
 node_modules/
+dist/
+
+# Environment Variables
 .env
+.env.local
+
+# Database
+telemetry.db
+telemetry.db-journal
+
+# OS Files
+.DS_Store
