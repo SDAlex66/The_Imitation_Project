@@ -14,6 +14,8 @@ export async function getDb() {
       driver: sqlite3.Database
     });
 
+    const db = dbInstance;
+
   await db.exec(`
     CREATE TABLE IF NOT EXISTS Matches (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,5 +46,5 @@ export async function getDb() {
   `);
 
   console.log("Database tables verified and ready.");
-  return db;
+  return dbInstance;
 }}
