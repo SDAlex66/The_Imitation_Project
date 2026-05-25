@@ -11,7 +11,6 @@ const app = express();
 app.use(cors());
 const httpServer = createServer(app);
 
-
 const io = new Server(httpServer, {
   cors: {
     origin: process.env.FRONTEND_URL || "http://localhost:5173",
@@ -276,7 +275,7 @@ io.on("connection", async (socket) => {
               [currentSession.matchId, aiResponseText, "AI", responseTime.toISOString()]
             );
 
-            const initialTypingDelay = Math.max(3500, aiResponseText.length * 120);
+            const initialTypingDelay = Math.max(3500, aiResponseText?.length * 120);
             await sleep(initialTypingDelay);
 
             socket.emit("receive_message", {
@@ -324,7 +323,7 @@ io.on("connection", async (socket) => {
           [userSession.matchId, aiResponseText, "AI", responseTime.toISOString()]
         );
 
-        const typingDelay = Math.max(3500, aiResponseText.length * 120);
+        const typingDelay = Math.max(3500, aiResponseText?.length * 120);
         await sleep(typingDelay);
 
         socket.emit("receive_message", {
@@ -384,7 +383,7 @@ io.on("connection", async (socket) => {
               [partnerSession.matchId, aiResponseText, "AI", responseTime.toISOString()]
             );
 
-            const typingDelay = Math.max(3500, aiResponseText.length * 120);
+            const typingDelay = Math.max(3500, aiResponseText?.length * 120);
             await sleep(typingDelay);
             
             io.to(partnerId).emit("receive_message", {
@@ -454,7 +453,7 @@ io.on("connection", async (socket) => {
                 [partnerSession.matchId, aiResponseText, "AI", responseTime.toISOString()]
               );
 
-              const typingDelay = Math.max(3500, aiResponseText.length * 120);
+              const typingDelay = Math.max(3500, aiResponseText?.length * 120);
               await sleep(typingDelay);
               
               io.to(partnerId).emit("receive_message", {
@@ -537,6 +536,8 @@ const PORT = process.env.PORT || 3000;
 
 (async () => {
   await refreshFeaturedChat();
+  setInterval(refreshFeaturedChat, 900000);
+
 
   httpServer.listen(PORT, () => {
     console.log(`Real-time backend running on http://localhost:${PORT}`);
