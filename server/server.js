@@ -701,6 +701,24 @@ app.get("/api/stats", async (req, res) => {
   }
 });
 
+app.get("/api/all-chats", async (req, res) => {
+  try {
+    const db = await getDb();
+    const matches = await db.all("SELECT id, opponentType, assignedModel FROM Matches ORDER BY id DESC LIMIT 30");
+    
+    const chats = [];
+    for (let match of matches) {
+      const messages = await db.all("SELECT * FROM Messages WHERE matchId = ? ORDER BY timestamp ASC", [match.id]);
+      if (messages.length > 0) {
+        chats.push({ matchId: match.id, ...match, messages });
+      }
+    }
+    res.json(chats);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch chat database" });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 
 (async () => {

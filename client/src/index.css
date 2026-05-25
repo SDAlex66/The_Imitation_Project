@@ -173,6 +173,8 @@ nav {
   text-align: center;
   gap: 1.5rem;
   box-sizing: border-box; 
+  flex-shrink: 0;
+  margin-bottom: 2rem;
 }
 
 .lobby-title {
