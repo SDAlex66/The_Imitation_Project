@@ -46,5 +46,8 @@ export async function getDb() {
   `);
 
   console.log("Database tables verified and ready.");
+  
+}
   return dbInstance;
-}}
+}
+

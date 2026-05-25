@@ -14,19 +14,8 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: (origin, callback) => {
-      const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
-      
-      console.log("Checking CORS origin:", origin, "Allowed:", allowedOrigin);
-
-      if (!origin || origin === allowedOrigin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST"],
-    credentials: true
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    methods: ["GET", "POST"]
   }
 });
 
