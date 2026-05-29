@@ -15,9 +15,7 @@ function Welcome({ onStart }) {
         By proceeding, you consent to your chat logs being recorded purely for academic telemetry and research.
       </p>
       <p className="lobby-text" style={{ fontSize: "1rem", fontWeight: "bold", color: "#ffd700", marginTop: "1rem", textAlign: "center" }}>
-        Update 1.0: <br />
-        — Human matchmaking has been improved, more likely to be paired with a real person. <br/> 
-        — Grok 4.20 has been added 💀
+        Version 1.1: <br />
       </p>
       <button className="lobby-button" onClick={onStart}>
         Acknowledge & Start
