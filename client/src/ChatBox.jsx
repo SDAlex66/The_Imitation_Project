@@ -25,6 +25,7 @@ function ChatBox({ socket, onEndRound, recoveredSession }) {
 
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
+  const hasReadied = useRef(false);
   
 
   const roundStartRef = useRef(
@@ -67,7 +68,8 @@ function ChatBox({ socket, onEndRound, recoveredSession }) {
 
 
     // only ready if new session
-    if (!recoveredSession) {
+    if (!recoveredSession && !hasReadied.current) {
+      hasReadied.current = true;
       socket.emit("ready");
     }
 

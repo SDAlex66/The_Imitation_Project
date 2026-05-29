@@ -23,8 +23,10 @@ function Evaluation({ socket, onComplete }) {
     return (
       <motion.div
         className="lobby-popup"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.4 }}
       >
         <h2 className="lobby-title">Thank You ❤</h2>
         <p className="lobby-text">Your result has successfully been recorded.</p>
@@ -39,8 +41,10 @@ function Evaluation({ socket, onComplete }) {
         <motion.div
           key="thank-you"
           className="lobby-popup evaluation-window-compact"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4 }}
         >
           <h2 className="lobby-title">Thank You ❤</h2>
           <p className="lobby-text">Your result has successfully been recorded.</p>
@@ -51,8 +55,8 @@ function Evaluation({ socket, onComplete }) {
           className="lobby-popup evaluation-window-compact"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 1 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4 }}
         >
           <h2 className="lobby-title">Make Your Guess</h2>
 

@@ -1,14 +1,45 @@
+# Dev tools (not for production)
+server/generate-prompt.js
+server/meta-prompt.md
+server/modelTester.js
+
 # Dependencies
-node_modules/
-dist/
+node_modules
+dist
+dist-ssr
 
 # Environment Variables
 .env
 .env.local
+*.local
 
 # Database
 telemetry.db
 telemetry.db-journal
+telemetry2.db
+telemetry2.db-journal
 
 # OS Files
 .DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+server_output.txt
+server_test.log
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

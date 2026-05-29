@@ -1,24 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 function Matchmaking({ onComplete, socket }) {
+  const onCompleteRef = useRef(onComplete);
+  const hasQueued = useRef(false);
+  onCompleteRef.current = onComplete;
+
   useEffect(() => {
-    
-    socket.emit("join_queue");
+    if (!hasQueued.current) {
+      hasQueued.current = true;
+      socket.emit("join_queue");
+    }
+
     socket.on("match_found", () => {
-      onComplete();
+      onCompleteRef.current();
     });
 
     return () => socket.off("match_found");
-  }, [socket, onComplete]);
+  }, [socket]);
 
   return (
     <motion.div
       className="lobby-popup"
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.7, transition: { duration: 1 } }} // The slow fade out
-      transition={{ duration: 1.5 }} // The slow fade in
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.4 }}
     >
       <h2 className="lobby-title">Searching for Opponent...</h2>
       <p className="lobby-text">

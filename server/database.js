@@ -1,9 +1,10 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-
-const dbPath = process.env.DB_PATH || path.resolve('telemetry.db');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dbPath = process.env.DB_PATH || path.join(__dirname, 'telemetry.db');
 
 let dbInstance = null;
 
@@ -22,7 +23,8 @@ export async function getDb() {
       sessionId TEXT,
       timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
       opponentType TEXT,
-      assignedModel TEXT
+      assignedModel TEXT,
+      wasSwapped INTEGER DEFAULT 0
     );
 
     CREATE TABLE IF NOT EXISTS Messages (
@@ -44,6 +46,12 @@ export async function getDb() {
       comment TEXT
     );
   `);
+
+  try {
+    await db.run("ALTER TABLE Matches ADD COLUMN wasSwapped INTEGER DEFAULT 0");
+  } catch {
+    // column already exists
+  }
 
   console.log("Database tables verified and ready.");
   

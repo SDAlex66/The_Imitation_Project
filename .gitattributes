@@ -1,0 +1,12 @@
+# line endings
+* text=auto eol=lf
+
+# normalize line endings for text files
+*.js text
+*.html text
+*.css text
+*.json text
+
+# binary
+*.png binary
+*.jpg binary
