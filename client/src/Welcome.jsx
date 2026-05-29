@@ -15,7 +15,7 @@ function Welcome({ onStart }) {
         By proceeding, you consent to your chat logs being recorded purely for academic telemetry and research.
       </p>
       <p className="lobby-text" style={{ fontSize: "1rem", fontWeight: "bold", color: "#ffd700", marginTop: "1rem", textAlign: "center" }}>
-        Version 1.1: <br />
+        Version 1.1 <br />
       </p>
       <button className="lobby-button" onClick={onStart}>
         Acknowledge & Start
